@@ -1,0 +1,21 @@
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    ServerName {{ServerName}}
+    DocumentRoot {{DocumentRoot}}
+
+    <Directory "{{DocumentRoot}}">
+        AllowOverride All
+        Require all granted
+        EnableMMAP Off
+    </Directory>
+    <IfModule mod_proxy_fcgi.c>
+        <FilesMatch ".+\.ph(ar|p|tml)$">
+            SetHandler "proxy:fcgi://dockstead-php:9000"
+        </FilesMatch>
+    </IfModule>
+
+    # LogLevel info ssl:warn
+    ErrorLog logs/{{ServerName}}-error.log
+    CustomLog logs/{{ServerName}}-access.log combined
+   
+</VirtualHost>

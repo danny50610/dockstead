@@ -1,0 +1,17 @@
+{
+    "namespaceResolver.sortAlphabetically": true,
+    "search.exclude": {
+        "**/.git": true,
+    },
+    "intelephense.environment.phpVersion": "8.0.0",
+    "[php]": {
+        "editor.wordSeparators": "`~!@#%^&*()-=+[{]}\\|;:'\",.<>/?",
+    },
+    "[markdown]": {
+        "gitlens.codeLens.scopes": ["document"]
+    },
+    "eslint.packageManager": "yarn",
+    "files.associations": {
+        "*.stub": "php"
+    }
+}

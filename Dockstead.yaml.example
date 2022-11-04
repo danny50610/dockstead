@@ -1,0 +1,13 @@
+---
+folders:
+  - map: /Users/danny/Projects/laravel
+    to: /home/vagrant/site/laravel
+
+sites:
+  - map: laravel.localhost
+    to: /home/vagrant/site/laravel/public
+    php: "7.4"
+    type: "apache"
+
+databases:
+  - laravel
