@@ -15,12 +15,13 @@ class UpCommand extends Command
 {
     protected function configure(): void
     {
+        // TODO: 提供選項不使用 -d
         $this->addOption('argv', null, InputOption::VALUE_REQUIRED);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $process = Process::fromShellCommandline('docker compose up ' . $input->getOption('argv'));
+        $process = Process::fromShellCommandline('docker compose up -d' . $input->getOption('argv'));
         $process->setTty(true);
         $process->run();
 
