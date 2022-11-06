@@ -9,7 +9,7 @@ services:
       - ./apache/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf
       - ./apache/conf/v-hosts:/usr/local/apache2/conf/v-hosts
     networks:
-      - sail
+      - dockstead
 
   php:
     build:
@@ -27,8 +27,29 @@ services:
       - ./php/conf/7.4/fpm/php-fpm.ini:/etc/php/7.4/fpm/php-fpm.ini
       - ./php/conf/7.4/fpm/pool.d/www.conf:/etc/php/7.4/fpm/pool.d/www.conf 
     networks:
-      - sail
+      - dockstead
+
+  mysql-5.7:
+    image: mysql:5.7
+    platform: linux/amd64
+    container_name: dockstead-mysql-5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "homestead"
+      MYSQL_USER: "homestead"
+      MYSQL_PASSWORD: "secret"
+      MYSQL_INITDB_SKIP_TZINFO: 1
+    ports:
+      - '33060:3306'
+    volumes:
+      - ./database/mysql/5.7/conf.d:/etc/mysql/conf.d
+      - dockstead-mysql-5.7:/var/lib/mysql
+    networks:
+      - dockstead
 
 networks:
-  sail:
+  dockstead:
     driver: bridge
+
+volumes:
+  dockstead-mysql-5.7:
