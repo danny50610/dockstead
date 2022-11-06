@@ -20,7 +20,7 @@ RUN adduser --disabled-password --gecos "" $IMAGE_USER \
 
 COPY ./php/supervisord.conf /etc/supervisor.d/supervisord.conf
 
-# USER $IMAGE_USER
+USER $IMAGE_USER
 
 WORKDIR /home/vagrant
 
@@ -29,4 +29,4 @@ WORKDIR /home/vagrant
 STOPSIGNAL SIGQUIT
 
 EXPOSE 9000
-CMD ["supervisord", "-c", "/etc/supervisor.d/supervisord.conf"]
+CMD ["sudo", "supervisord", "-c", "/etc/supervisor.d/supervisord.conf"]
