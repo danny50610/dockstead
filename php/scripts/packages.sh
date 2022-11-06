@@ -42,12 +42,15 @@ apt install -y \
     sudo \
     software-properties-common \
     supervisor \
-    htop
+    htop \
+    unzip \
+    zip
 
 add-apt-repository ppa:ondrej/php
 
 apt update
 
+# TODO:
 # install_php "7.2"
 install_php "7.4"
 # install_php "8.0"
