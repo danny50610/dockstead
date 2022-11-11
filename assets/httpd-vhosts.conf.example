@@ -15,7 +15,7 @@
     </IfModule>
 
     # LogLevel info ssl:warn
-    ErrorLog logs/{{ServerName}}-error.log
-    CustomLog logs/{{ServerName}}-access.log combined
+    ErrorLog /var/log/{{ServerName}}-error.log
+    CustomLog /var/log/{{ServerName}}-access.log combined
    
 </VirtualHost>
