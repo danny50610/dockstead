@@ -44,7 +44,8 @@ apt install -y \
     supervisor \
     htop \
     unzip \
-    zip
+    zip \
+    vim
 
 add-apt-repository ppa:ondrej/php
 
