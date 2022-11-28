@@ -25,7 +25,10 @@ services:
     volumes:
       - ./php/conf/7.4/fpm/php.ini:/etc/php/7.4/fpm/php.ini
       - ./php/conf/7.4/fpm/php-fpm.ini:/etc/php/7.4/fpm/php-fpm.ini
-      - ./php/conf/7.4/fpm/pool.d/www.conf:/etc/php/7.4/fpm/pool.d/www.conf 
+      - ./php/conf/7.4/fpm/pool.d/www.conf:/etc/php/7.4/fpm/pool.d/www.conf
+      - ./php/conf/8.0/fpm/php.ini:/etc/php/8.0/fpm/php.ini
+      - ./php/conf/8.0/fpm/php-fpm.ini:/etc/php/8.0/fpm/php-fpm.ini
+      - ./php/conf/8.0/fpm/pool.d/www.conf:/etc/php/8.0/fpm/pool.d/www.conf 
     networks:
       - dockstead
 
