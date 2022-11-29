@@ -33,7 +33,7 @@ function install_php() {
 }
 
 
-apt update && apt upgrade
+apt update && apt upgrade -y
 
 apt install -y \
     git \

@@ -19,6 +19,7 @@ RUN adduser --disabled-password --gecos "" $IMAGE_USER \
   && echo "$IMAGE_USER  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers
 
 COPY ./php/supervisord.conf /etc/supervisor.d/supervisord.conf
+COPY ./php/aliases $HOME/.bash_aliases
 
 USER $IMAGE_USER
 
