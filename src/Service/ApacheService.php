@@ -27,7 +27,7 @@ class ApacheService
             $vhostConf = $this->replace($vhostConf, [
                 '{{ServerName}}' => $site['map'],
                 '{{DocumentRoot}}' => $site['to'],
-                '{{FpmPort}}' => ($site['php'] ?? null) == '7.4' ? 9000 : 9001, // FIXME:
+                '{{FpmPort}}' => ($site['php'] ?? null) == '7.4' ? 9000 : (($site['php'] ?? null) == '8.0' ? 9001 : 9002), // FIXME:
             ]);
 
             file_put_contents("apache/conf/v-hosts/{$site['map']}.conf", $vhostConf);
