@@ -2,7 +2,6 @@ version: '3'
 services:
   apache:
     image: httpd:2.4
-    container_name: dockstead-apache
     ports:
       - '8000:80'
     volumes:
@@ -16,7 +15,6 @@ services:
       context: .
       dockerfile: php/Dockerfile
     image: dockstead/php
-    container_name: dockstead-php
     extra_hosts:
       - 'host.docker.internal:host-gateway'
     volumes:
@@ -38,7 +36,6 @@ services:
   mysql-5.7:
     image: mysql:5.7
     platform: linux/amd64
-    container_name: dockstead-mysql-5.7
     environment:
       MYSQL_ROOT_PASSWORD: "root"
       MYSQL_DATABASE: "homestead"
