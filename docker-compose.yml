@@ -50,9 +50,23 @@ services:
     networks:
       - dockstead
 
+  postgres-15:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: "homestead"
+      POSTGRES_USER: "homestead"
+      POSTGRES_PASSWORD: "secret"
+    ports:
+      - '54320:5432'
+    volumes:
+      - dockstead-postgres-15:/var/lib/postgresql/data
+    networks:
+      - dockstead
+
 networks:
   dockstead:
     driver: bridge
 
 volumes:
   dockstead-mysql-5.7:
+  dockstead-postgres-15:
