@@ -51,7 +51,7 @@ add-apt-repository ppa:ondrej/php
 
 apt update
 
-# TODO:
+# TODO: 根據版本決定是否安裝
 # install_php "7.2"
 install_php "7.4"
 install_php "8.0"
