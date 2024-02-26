@@ -56,3 +56,4 @@ apt update
 install_php "7.4"
 install_php "8.0"
 install_php "8.1"
+install_php "8.2"
