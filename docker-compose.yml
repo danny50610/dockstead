@@ -50,6 +50,22 @@ services:
     networks:
       - dockstead
 
+  mysql-8.0:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: "homestead"
+      MYSQL_USER: "homestead"
+      MYSQL_PASSWORD: "secret"
+      MYSQL_INITDB_SKIP_TZINFO: 1
+    ports:
+      - '33061:3306'
+    volumes:
+      - ./database/mysql/8.0/conf.d:/etc/mysql/conf.d
+      - dockstead-mysql-8.0:/var/lib/mysql
+    networks:
+      - dockstead
+
   postgres-15:
     image: postgres:15
     environment:
@@ -69,4 +85,5 @@ networks:
 
 volumes:
   dockstead-mysql-5.7:
+  dockstead-mysql-8.0:
   dockstead-postgres-15:
