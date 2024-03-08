@@ -4,9 +4,12 @@ services:
     image: httpd:2.4
     ports:
       - '8000:80'
+      - '44300:443'
     volumes:
       - ./apache/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf
       - ./apache/conf/v-hosts:/usr/local/apache2/conf/v-hosts
+      - ./apache/conf/extra/httpd-ssl.conf:/usr/local/apache2/conf/extra/httpd-ssl.conf
+      - ./certs:/usr/local/apache2/conf/certs
     networks:
       - dockstead
 
