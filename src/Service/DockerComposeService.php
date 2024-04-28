@@ -26,7 +26,6 @@ class DockerComposeService
         }
 
         $dockerCompose = [
-            'version' => '3',
             'services' => [
                 'apache' => [
                     'volumes' => $volumes,
