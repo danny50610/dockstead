@@ -39,12 +39,14 @@ apt install -y \
     git \
     jq \
     curl \
+    wget \
     sudo \
     software-properties-common \
     supervisor \
     htop \
     unzip \
     zip \
+    iproute2 \
     vim
 
 add-apt-repository ppa:ondrej/php
