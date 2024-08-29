@@ -13,3 +13,7 @@ function php81() {
 function php82() {
     sudo update-alternatives --set php /usr/bin/php8.2
 }
+
+function php83() {
+    sudo update-alternatives --set php /usr/bin/php8.3
+}
