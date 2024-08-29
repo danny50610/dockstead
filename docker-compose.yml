@@ -89,6 +89,11 @@ services:
     networks:
       - dockstead
 
+  redis:
+    image: redis:6.0.16-alpine
+    networks:
+      - dockstead
+
 networks:
   dockstead:
     driver: bridge
