@@ -110,3 +110,4 @@ Homestead.json
 
 Dockstead.yaml
 docker-compose.override.yml
+docker-compose.custom.yml

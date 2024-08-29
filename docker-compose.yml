@@ -1,3 +1,7 @@
+include:
+  - path : 
+    - docker-compose.custom.yml
+
 services:
   apache:
     image: httpd:2.4
