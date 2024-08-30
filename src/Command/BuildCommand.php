@@ -5,7 +5,6 @@ namespace App\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 
@@ -14,15 +13,18 @@ class BuildCommand extends Command
 {
     protected function configure(): void
     {
-        $this->addOption('argv', null, InputOption::VALUE_REQUIRED);
+        // TODO: 接收參數 -> docker compose
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $process = Process::fromShellCommandline('docker compose build ' . $input->getOption('argv'));
-        $process->setTty(true);
-        $process->run();
+        // TODO: 產生自動生成的檔案 ?
+        $process = new Process(['docker', 'compose', 'build']);
+        $process->setTimeout(null);
+        $process->run(function ($type, $buffer) use ($output): void {
+            $output->write($buffer);
+        });
 
-        return Command::SUCCESS;
+        return $process->getExitCode() == 0 ? Command::SUCCESS : Command::FAILURE;
     }
 }

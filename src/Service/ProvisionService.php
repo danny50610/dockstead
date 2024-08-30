@@ -9,6 +9,7 @@ use Symfony\Component\Yaml\Yaml;
 class ProvisionService
 {
     protected $output;
+
     public function __construct($output)
     {
         $this->output = $output;
@@ -38,7 +39,7 @@ class ProvisionService
             }
         }
 
-        if (!$findMysql) {
+        if (! $findMysql) {
             throw new Exception('Database is not running');
         }
 
@@ -57,7 +58,7 @@ class ProvisionService
     protected function createHomesteadDatabaseUser()
     {
         $process = Process::fromShellCommandline('docker compose exec mysql-5.7 mysql -uroot -proot');
-        $process->setInput(<<<EOF
+        $process->setInput(<<<'EOF'
             CREATE USER IF NOT EXISTS 'homestead'@'%' IDENTIFIED BY 'secret';
             GRANT ALL PRIVILEGES ON *.* TO 'homestead'@'%' WITH GRANT OPTION;
         EOF);
@@ -70,7 +71,7 @@ class ProvisionService
 
         $sqlScript = '';
         foreach ($docksteadConfig['databases'] as $database) {
-            $sqlScript .= "CREATE DATABASE IF NOT EXISTS `{$database}` DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_unicode_ci;" .  PHP_EOL;
+            $sqlScript .= "CREATE DATABASE IF NOT EXISTS `{$database}` DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_unicode_ci;" . PHP_EOL;
         }
 
         $process = Process::fromShellCommandline('docker compose exec mysql-5.7 mysql -uroot -proot');
