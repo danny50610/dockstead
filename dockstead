@@ -10,4 +10,6 @@ $application = new Application();
 $application->add(new \App\Command\UpCommand());
 $application->add(new \App\Command\BuildCommand());
 
+// FIXME: auto create docker-compose.custom.yml
+
 $application->run();
