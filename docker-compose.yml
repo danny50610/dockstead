@@ -1,5 +1,5 @@
 include:
-  - path : 
+  - path:
     - docker-compose.custom.yml
 
 services:
@@ -55,6 +55,7 @@ services:
       - ./php/conf/8.3/fpm/php-fpm.conf:/etc/php/8.3/fpm/php-fpm.conf
       - ./php/conf/8.3/fpm/pool.d/www.conf:/etc/php/8.3/fpm/pool.d/www.conf
       - ./php/conf/xdebug.ini:/etc/php/8.3/mods-available/xdebug.ini
+      - dockstead-php:/home/vagrant/local-site
     networks:
       - dockstead
 
@@ -120,3 +121,4 @@ volumes:
   dockstead-mysql-5.7:
   dockstead-mysql-8.0:
   dockstead-postgres-15:
+  dockstead-php:
