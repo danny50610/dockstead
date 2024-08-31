@@ -51,6 +51,10 @@ services:
       - ./php/conf/8.2/fpm/php-fpm.conf:/etc/php/8.2/fpm/php-fpm.conf
       - ./php/conf/8.2/fpm/pool.d/www.conf:/etc/php/8.2/fpm/pool.d/www.conf
       - ./php/conf/xdebug.ini:/etc/php/8.2/mods-available/xdebug.ini
+      - ./php/conf/8.3/fpm/php.ini:/etc/php/8.3/fpm/php.ini
+      - ./php/conf/8.3/fpm/php-fpm.conf:/etc/php/8.3/fpm/php-fpm.conf
+      - ./php/conf/8.3/fpm/pool.d/www.conf:/etc/php/8.3/fpm/pool.d/www.conf
+      - ./php/conf/xdebug.ini:/etc/php/8.3/mods-available/xdebug.ini
     networks:
       - dockstead
 
