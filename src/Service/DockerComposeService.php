@@ -21,22 +21,26 @@ class DockerComposeService
         $docksteadConfig = Yaml::parseFile('Dockstead.yaml');
 
         $volumes = [];
-        foreach ($docksteadConfig['folders'] as $folders) {
+        foreach ($docksteadConfig['folders'] ?? [] as $folders) {
             $volumes[] = $folders['map'] . ':' . $folders['to'];
         }
 
-        $dockerCompose = [
-            'services' => [
-                'apache' => [
-                    'volumes' => $volumes,
+        if (count($volumes) > 0) {
+            $dockerCompose = [
+                'services' => [
+                    'apache' => [
+                        'volumes' => $volumes,
+                    ],
+                    'php' => [
+                        'volumes' => $volumes,
+                    ],
                 ],
-                'php' => [
-                    'volumes' => $volumes,
-                ],
-            ],
-        ];
+            ];
 
-        $yaml = Yaml::dump($dockerCompose, 10, 2);
+            $yaml = Yaml::dump($dockerCompose, 10, 2);
+        } else {
+            $yaml = '';
+        }
 
         file_put_contents('docker-compose.override.yml', $yaml);
     }
