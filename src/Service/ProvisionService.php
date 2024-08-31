@@ -29,7 +29,7 @@ class ProvisionService
         if ($exitCode != 0) {
             throw new Exception('Can not check database is running');
         }
-        $containers = json_decode($process->getOutput(), true);
+        $containers = json_decode($this->mergeJson($process->getOutput()), true, 512, JSON_THROW_ON_ERROR);
 
         $findMysql = false;
         foreach ($containers as $container) {
@@ -53,6 +53,15 @@ class ProvisionService
             $this->output->writeln('Wait mysql ready....');
             sleep(3);
         }
+    }
+
+    protected function mergeJson(string $jsons)
+    {
+        $result = '[';
+        $result .= implode(',', array_filter(explode("\n", $jsons)));
+        $result .= ']';
+
+        return $result;
     }
 
     protected function createHomesteadDatabaseUser()

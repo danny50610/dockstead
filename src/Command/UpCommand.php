@@ -19,7 +19,7 @@ class UpCommand extends Command
     protected function configure(): void
     {
         // TODO: 提供選項不使用 -d
-        $this->addOption('argv', null, InputOption::VALUE_REQUIRED);
+        // $this->addOption('argv', null, InputOption::VALUE_REQUIRED);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -33,9 +33,12 @@ class UpCommand extends Command
         $nginxService = new NginxService();
         $nginxService->generateSiteConf();
 
-        $process = Process::fromShellCommandline('docker compose up -d' . $input->getOption('argv'));
-        $process->setTty(true);
-        $exitCode = $process->run();
+        $process = new Process(['docker', 'compose', 'up', '-d']);
+        $process->setTimeout(null);
+        $process->run(function ($type, $buffer) use ($output): void {
+            $output->write($buffer);
+        });
+        $exitCode = $process->getExitCode();
         if ($exitCode != 0) {
             return Command::FAILURE;
         }
