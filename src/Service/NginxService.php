@@ -5,26 +5,25 @@ namespace App\Service;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
 
-class ApacheService
+class NginxService
 {
-    public function generateVhostConf()
+    public function generateSiteConf()
     {
         $filesystem = new Filesystem();
-        $filesystem->remove('apache/conf/v-hosts');
+        $filesystem->remove('nginx/sites-enabled');
 
-        $filesystem->mkdir('apache/conf/v-hosts');
+        $filesystem->mkdir('nginx/sites-enabled');
 
         $docksteadConfig = Yaml::parseFile('Dockstead.yaml');
-        // var_dump($docksteadConfig);
 
-        $vhostTemplate = file_get_contents('assets/httpd-vhosts.conf.example');
+        $siteTemplate = file_get_contents('assets/nginx-site.conf.example');
         foreach ($docksteadConfig['sites'] as $site) {
-            if (($site['type'] ?? null) != 'apache') {
+            if (($site['type'] ?? null) != 'nginx') {
                 continue;
             }
 
-            $vhostConf = $vhostTemplate;
-            $vhostConf = $this->replace($vhostConf, [
+            $siteConf = $siteTemplate;
+            $siteConf = $this->replace($siteConf, [
                 '{{ServerName}}' => $site['map'],
                 '{{DocumentRoot}}' => $site['to'],
                 '{{FpmPort}}' => match ($site['php'] ?? null) {
@@ -37,7 +36,7 @@ class ApacheService
                 },
             ]);
 
-            file_put_contents("apache/conf/v-hosts/{$site['map']}.conf", $vhostConf);
+            file_put_contents("nginx/sites-enabled/{$site['map']}.conf", $siteConf);
         }
     }
 

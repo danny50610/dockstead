@@ -16,6 +16,7 @@ provision (建立在已經啟動的狀況)
  */
 
 use App\Service\ApacheService;
+use App\Service\NginxService;
 use App\Service\DockerComposeService;
 use App\Service\ProvisionService;
 
@@ -24,8 +25,11 @@ require __DIR__ . '/vendor/autoload.php';
 // $a = new DockerComposeService();
 // $a->generateDockerCompose();
 
-$b = new ApacheService();
-$b->generateVhostConf();
+// $b = new ApacheService();
+// $b->generateVhostConf();
 
 // $c = new ProvisionService();
 // $c->doProvision();
+
+$d = new NginxService();
+$d->generateSiteConf();

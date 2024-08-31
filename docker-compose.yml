@@ -16,6 +16,17 @@ services:
     networks:
       - dockstead
 
+  nginx:
+    image: nginx:1.26
+    ports:
+      - '8001:80'
+      - '44301:443'
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/sites-enabled:/etc/nginx/sites-enabled
+    networks:
+      - dockstead
+
   php:
     build:
       context: .

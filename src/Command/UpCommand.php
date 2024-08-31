@@ -4,6 +4,7 @@ namespace App\Command;
 
 use App\Service\ApacheService;
 use App\Service\DockerComposeService;
+use App\Service\NginxService;
 use App\Service\ProvisionService;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -28,6 +29,9 @@ class UpCommand extends Command
 
         $apacheService = new ApacheService();
         $apacheService->generateVhostConf();
+
+        $nginxService = new NginxService();
+        $nginxService->generateSiteConf();
 
         $process = Process::fromShellCommandline('docker compose up -d' . $input->getOption('argv'));
         $process->setTty(true);
