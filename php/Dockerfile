@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 ENV IMAGE_USER=vagrant
 ENV HOME=/home/$IMAGE_USER
