@@ -10,6 +10,7 @@ class DockerComposeService
      * 生成 docker-compose.g.yml 檔案
      * 包含
      * - apache volumes
+     * - nginx volumes
      * - php volumes
      * - TODO: 產生 php version，啟動對應的 php-fpm
      * - TODO: user ports map 設定 (在 php 上)
@@ -29,6 +30,9 @@ class DockerComposeService
             $dockerCompose = [
                 'services' => [
                     'apache' => [
+                        'volumes' => $volumes,
+                    ],
+                    'nginx' => [
                         'volumes' => $volumes,
                     ],
                     'php' => [

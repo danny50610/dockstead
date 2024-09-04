@@ -21,7 +21,6 @@ server {
     sendfile off;
 
     location ~ \.php$ {
-        fastcgi_split_path_info ^(.+\.php)(/.+)$;
         fastcgi_pass php:{{FpmPort}};
         fastcgi_index index.php;
         include fastcgi_params;
@@ -36,6 +35,10 @@ server {
     }
 
     location ~ /\.ht {
+        deny all;
+    }
+
+    location ~ /\.(?!well-known).* {
         deny all;
     }
 }
