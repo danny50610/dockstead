@@ -13,6 +13,7 @@ services:
       - ./apache/conf/v-hosts:/usr/local/apache2/conf/v-hosts
       - ./apache/conf/extra/httpd-ssl.conf:/usr/local/apache2/conf/extra/httpd-ssl.conf
       - ./certs:/usr/local/apache2/conf/certs
+      - dockstead-php:/home/vagrant/local-site
     networks:
       - dockstead
 
@@ -24,6 +25,7 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/sites-enabled:/etc/nginx/sites-enabled
+      - dockstead-php:/home/vagrant/local-site
     networks:
       - dockstead
 
