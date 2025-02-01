@@ -112,6 +112,17 @@ services:
     networks:
       - dockstead
 
+  minio:
+    image: minio/minio
+    command: server /data --console-address :9001
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    volumes:
+      - dockstead-minio:/data
+    networks:
+      - dockstead
+
 networks:
   dockstead:
     driver: bridge
@@ -124,3 +135,4 @@ volumes:
   dockstead-mysql-8.0:
   dockstead-postgres-15:
   dockstead-php:
+  dockstead-minio:
