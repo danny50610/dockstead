@@ -34,6 +34,14 @@ server {
         fastcgi_read_timeout 300;
     }
 
+    location ~* /__vite_hmr {
+        proxy_pass http://php:5173;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+        proxy_set_header Host $host;
+    }
+
     location ~ /\.ht {
         deny all;
     }
