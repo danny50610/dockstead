@@ -14,6 +14,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 RUN adduser --disabled-password --gecos "" $IMAGE_USER \
   && mkdir -p /run/php \
   && bash ./packages.sh \
+  && bash ./nvm.sh \
   && rm -rf ~/.composer/cache/* \
   && chown -R $IMAGE_USER:$IMAGE_USER $HOME \
   && echo "$IMAGE_USER  ALL = ( ALL ) NOPASSWD: ALL" >> /etc/sudoers
