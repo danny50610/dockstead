@@ -30,6 +30,10 @@ function install_php() {
     "php${PHP_VERSION}-soap" \
     "php${PHP_VERSION}-xsl" \
     "php${PHP_VERSION}-zip"
+
+    if [[ "${PHP_VERSION}" != "7.4" ]]; then
+        apt install -y "php${PHP_VERSION}-opentelemetry"
+    fi
 }
 
 
