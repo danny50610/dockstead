@@ -16,6 +16,8 @@ services:
       - dockstead-php:/home/vagrant/local-site
     networks:
       - dockstead
+    profiles:
+      - apache
 
   nginx:
     image: nginx:1.26
@@ -29,6 +31,8 @@ services:
       - dockstead-php:/home/vagrant/local-site
     networks:
       - dockstead
+    profiles:
+      - nginx
 
   php:
     build:
@@ -78,6 +82,8 @@ services:
       - dockstead-mysql-5.7:/var/lib/mysql
     networks:
       - dockstead
+    profiles:
+      - mysql-5.7
 
   mysql-8.0:
     image: mysql:8.0
@@ -94,6 +100,8 @@ services:
       - dockstead-mysql-8.0:/var/lib/mysql
     networks:
       - dockstead
+    profiles:
+      - mysql-8.0
 
   postgres-15:
     image: postgres:15
@@ -107,9 +115,13 @@ services:
       - dockstead-postgres-15:/var/lib/postgresql/data
     networks:
       - dockstead
+    profiles:
+      - postgres-15
 
   redis:
     image: redis:6.0.16-alpine
+    ports:
+      - '6379:6379'
     networks:
       - dockstead
 
