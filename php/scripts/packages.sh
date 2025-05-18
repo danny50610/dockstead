@@ -31,7 +31,7 @@ function install_php() {
     "php${PHP_VERSION}-xsl" \
     "php${PHP_VERSION}-zip"
 
-    if [[ "${PHP_VERSION}" != "7.4" ]]; then
+    if [[ "${PHP_VERSION}" != "7.4" && "${PHP_VERSION}" != "7.2" ]]; then
         apt install -y "php${PHP_VERSION}-opentelemetry"
     fi
 }
@@ -58,9 +58,10 @@ add-apt-repository ppa:ondrej/php
 apt update
 
 # TODO: 根據版本決定是否安裝
-# install_php "7.2"
+install_php "7.2"
 install_php "7.4"
 install_php "8.0"
 install_php "8.1"
 install_php "8.2"
 install_php "8.3"
+install_php "8.4"

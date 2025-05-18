@@ -1,3 +1,7 @@
+function php72() {
+    sudo update-alternatives --set php /usr/bin/php7.2
+}
+
 function php74() {
     sudo update-alternatives --set php /usr/bin/php7.4
 }
@@ -16,4 +20,8 @@ function php82() {
 
 function php83() {
     sudo update-alternatives --set php /usr/bin/php8.3
+}
+
+function php84() {
+    sudo update-alternatives --set php /usr/bin/php8.4
 }
